@@ -21,14 +21,36 @@ body{
     background-repeat: no-repeat;
     background-color: #121214;
 }
+header{
+    margin-top: 32px;
+    /* para os elemento antes da animação não fiquem no topo, precisa por uma altura pre definida do header */
+    height: calc(120px + 32px);
+}
+header div{
+    width: 120px;
+    margin: auto;
+    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50.5%, #E2D45C 100%);
+    
+    border-radius: 50%;
+    display: flex;
+    /* pra por a borda */
+    padding: 4px;
+    transition: transform .3s;
+}
+header div:hover{
+    transform: scale(1.1);
+}
+header img{
+    width: 100%;
+    border-radius: 50%;
+}
 main{
     /* vai procurar ficar com esse tanto de largura */
     max-width: 580px;
     /* caso seja menor de 580, isso entra em ação */
     width: 90%;
     /* centralizar as coisas sem precisar dar um display flex... */
-    margin: auto;
-    margin-top: 32px;
+    margin: 32px auto;
 
     display: grid;
     gap: 24px;
@@ -61,11 +83,70 @@ section ul{
     gap: 16px;
     margin-top: 24px;
 }
+section ul li{
+    transition: transform .3s;
+}
+section ul li:hover{
+    transform: scale(1.1);
+}
 .games-list img{
     width: 90px;
     border-radius: 8px;
+    border: 1px solid #443E54;
 }
 .channel-list img{
     border-radius: 50%;
     width: 70px;
+}
+
+/* animation (Amo) */
+
+header div{
+            /* nome da animação, duaração da animação e delay da animação */
+    animation:fromTop .7s .2s backwards;
+                            /* para iniciar a animação já com os atributos/propriedades dados */
+}
+
+main section{
+    animation: fromBottom .7s backwards;
+}
+            /* pegar o primeiro filho */
+main section:nth-child(1){
+    animation-delay: 0;
+}
+main section:nth-child(2){
+    animation-delay: .4s;
+}
+main section:nth-child(3){
+    animation-delay: .8s;
+}
+
+
+/* serve pra da o inicio da animação */
+@keyframes fromTop{
+            /* o nome para a animação */
+    from{
+        /*vai partir daqui  */
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+
+    to{
+        /* para terminar aqui */
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fromBottom{
+    
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0);
+    }
 }
